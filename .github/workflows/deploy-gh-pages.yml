@@ -13,8 +13,10 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - run: npm install
+    - run: npm ci
     - run: REACT_APP_STATIC_URL=https://raw.githubusercontent.com/pierluigiortenzi/familytree/refs/heads/main/backup/Untitled_1.ged npm run build
+    - run: npm test
+    - run: npm run cy:start-and-run
     - name: Deploy
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
